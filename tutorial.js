@@ -42,3 +42,32 @@ add this script in package.json
 create test folder and setup.ts under it
   
 */
+
+/**
+ publishing the package to npm: org name:santicket
+ common is the folder i will work on it
+
+ change the name in package.json
+ {
+  "name": "@santicket/common",
+ }
+ 
+ we will build the ts file into js file. 
+ del-cli package is used for clean , it will delete old build js file eveytime we create new one 
+  "scripts": {
+    "clean": "del ./build/*",
+    "build": "npm run clean && tsc"
+  },
+
+  to publish the package for first time: $ npm publish --access public
+ firsr do npm login:
+ git commit the file
+ $npm version patch  //it will increase the version (we need to do it everytime)
+ $npm run build
+ $npm publish
+
+ to automate this: npm run pub
+ {
+      "pub": "git add . && git commit -m \"Updates\" && npm version patch && npm run build && npm publish"
+ }
+ */
