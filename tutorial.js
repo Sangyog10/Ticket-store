@@ -71,3 +71,8 @@ create test folder and setup.ts under it
       "pub": "git add . && git commit -m \"Updates\" && npm version patch && npm run build && npm publish"
  }
  */
+
+/**
+  To easily get access to pods outside the kubernetes cluster
+  $kubectl port-forward podName 4222:4222
+  */
