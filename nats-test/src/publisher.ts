@@ -16,10 +16,12 @@ stan.on("connect", async () => {
       id: "1",
       price: 23,
       title: "title",
+      userId: "",
     });
   } catch (error) {
     console.error(error);
   }
+
   // const data = JSON.stringify({
   //   id: "123",
   //   title: "concert",
