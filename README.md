@@ -1,6 +1,19 @@
 # Ticketing App
-
 Ticketing App is built on microservice architecture with various tools like docker,kubernetes, skaffold, node , redis, etc.
+
+
+## Requirements
+1. Install Docker
+2. Install minikube
+3. Install skaffold
+
+
+## To run the project
+To run this project,
+
+```bash
+  skaffold dev
+```
 
 ## Installation
 
@@ -22,10 +35,10 @@ Enable ingress with following command
   minikube addons enable ingress
 ```
 
-## Deployment
-
-To deploy this project run
+## To test the project
+To test this project, change to each directory and run
 
 ```bash
-  skaffold dev
+  npm install
+  npm run test
 ```

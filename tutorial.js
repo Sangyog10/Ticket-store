@@ -1,4 +1,8 @@
 /*
+ for windows:goto /etc/hosts and add ip address(127.0.0.1 ticketing.dev) to acess it from outside world
+ for linux:goto /etc/hosts and add ip address(minikube ip) to ticketing.dev
+
+
 first start docker daemon: sudo systemctl start docker
 then start minikube: minikube start
 if https blocks: type thisisunsafe in browser
