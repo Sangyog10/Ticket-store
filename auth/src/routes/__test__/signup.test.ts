@@ -39,15 +39,14 @@ it("disallows duplicate email", async () => {
   await request(app)
     .post("/api/users/signup")
     .send({
-      email: "invalidemail",
+      email: "invalidemail@gmail.com",
       password: "password",
     })
     .expect(201);
-
   await request(app)
     .post("/api/users/signup")
     .send({
-      email: "invalidemail",
+      email: "invalidemail@gmail.com",
       password: "password",
     })
     .expect(400);
@@ -57,7 +56,7 @@ it("it sets a cookie after signup", async () => {
   const response = await request(app)
     .post("/api/users/signup")
     .send({
-      email: "invalidemail",
+      email: "test@test.com",
       password: "password",
     })
     .expect(201);

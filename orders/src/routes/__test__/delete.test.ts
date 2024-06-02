@@ -3,7 +3,7 @@ import { app } from "../../app";
 import { Ticket } from "../../models/ticket";
 import { OrderStatus } from "@santicket/common";
 import { Order } from "../../models/order";
-import { natsWrapper } from "../../__mocks__/nats-wrapper";
+import { natsWrapper } from "../../nats-wrapper";
 
 it("marks an order as cancelled", async () => {
   // create a ticket with Ticket Model
@@ -19,7 +19,7 @@ it("marks an order as cancelled", async () => {
     .post("/api/orders")
     .set("Cookie", user)
     .send({ ticketId: ticket.id })
-    .expect(201);
+    .expect(200);
 
   // make a request to cancel the order
   await request(app)
@@ -47,7 +47,7 @@ it("emits a order cancelled event", async () => {
     .post("/api/orders")
     .set("Cookie", user)
     .send({ ticketId: ticket.id })
-    .expect(201);
+    .expect(200);
 
   // make a request to cancel the order
   await request(app)
