@@ -1,8 +1,10 @@
 import mongoose from "mongoose";
 import { Order } from "./order";
 import { OrderStatus } from "@santicket/common";
+import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 
 interface TicketAtters {
+  id: string;
   title: string;
   price: number;
 }
@@ -10,11 +12,16 @@ interface TicketAtters {
 export interface TicketDocs extends mongoose.Document {
   title: string;
   price: number;
+  version: number;
   isReserved(): Promise<boolean>; //func to check if the ticket has already been reserved
 }
 
 interface TicketModel extends mongoose.Model<TicketDocs> {
   build(atters: TicketAtters): TicketDocs;
+  findByEvent(event: {
+    id: string;
+    version: number;
+  }): Promise<TicketDocs | null>;
 }
 
 const ticketSchema = new mongoose.Schema(
@@ -39,8 +46,18 @@ const ticketSchema = new mongoose.Schema(
   }
 );
 
+ticketSchema.set("versionKey", "version");
+ticketSchema.plugin(updateIfCurrentPlugin);
+
+ticketSchema.statics.findByEvent = (event: { id: string; version: number }) => {
+  return Ticket.findOne({ _id: event.id, version: event.version - 1 });
+};
 ticketSchema.statics.build = (atters: TicketAtters) => {
-  return new Ticket(atters);
+  return new Ticket({
+    _id: atters.id,
+    title: atters.title,
+    price: atters.price,
+  });
 };
 
 // Run query to look for all orders. find an order where ticket is the ticker
