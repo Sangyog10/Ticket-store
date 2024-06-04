@@ -1,5 +1,5 @@
 import { CustomError } from './custom-error';
-export declare class NotFoundError extends CustomError {
+export declare class notFoundError extends CustomError {
     statusCode: number;
     constructor();
     serializeErrors(): {
