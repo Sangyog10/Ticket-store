@@ -4,6 +4,7 @@ import {
   requireAuth,
   validateRequest,
   UnauthorizedError,
+  BadRequestError,
 } from "@santicket/common";
 import { body } from "express-validator";
 import { Ticket } from "../models/ticket";
@@ -27,6 +28,11 @@ router.put(
     if (!ticket) {
       throw new notFoundError();
     }
+
+    if(ticket.orderId){
+      throw new BadRequestError("Ticket cannot be updated right now, it is reserved")
+    }
+
     if (ticket.userId !== req.currentUser!.id) {
       throw new UnauthorizedError();
     }
