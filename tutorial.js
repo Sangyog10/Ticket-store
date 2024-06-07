@@ -80,4 +80,10 @@ create test folder and setup.ts under it
   To easily get access to pods outside the kubernetes cluster
   $kubectl port-forward podName 4222:4222
   */
-//438
+
+  /**
+   * creating a secret for stripe key:sk_test_51PP7Z1HkDOwAVnbUS9RiCsDsmSMzMDoG4xG90Gz03fl0peZVwHuZhw8zgNNq6U5lzvAXbqOmeTvqHaM7R7yiqxBs00kZdrMqJK
+   * command: $ kubectl create secret generic stripe-secret --from-literal STRIPE_KEY=sk_test_51PP7Z1HkDOwAVnbUS9RiCsDsmSMzMDoG4xG90Gz03fl0peZVwHuZhw8zgNNq6U5lzvAXbqOmeTvqHaM7R7yiqxBs00kZdrMqJK
+   * and update the payement=depl and add the secret
+   */
+//467

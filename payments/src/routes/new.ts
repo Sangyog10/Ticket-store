@@ -5,6 +5,8 @@ import {
   validateRequest,
   BadRequestError,
   notFoundError,
+  UnauthorizedError,
+  OrderStatus,
 } from "@santicket/common";
 import { Order } from "../models/order";
 
@@ -12,11 +14,24 @@ const router = express.Router();
 
 router.post(
   "/api/payments",
-  requireAuth,
+  requireAuth,validateRequest,
   [body("token").not().isEmpty(), body("orderId").not().isEmpty()],
   async (req: Request, res: Response) => {
-    res.send({success:true})
+    const {token,orderId}=req.body;
+    
+    const order=await Order.findById(orderId);
+    if(!order){
+        throw new notFoundError()
+    }
 
+    if(order.userId!==req.currentUser!.id){
+        throw new UnauthorizedError();
+    }
+
+    if(order.status===OrderStatus.Cancelled){
+        throw new BadRequestError("Order already cancelled");
+    }
+    res.send({success:true})
   }
 );
 
