@@ -116,5 +116,3 @@ http://SERVICE_NAME.NAMESPACE.svc.cluster.local
 $kubectl get services
 $kubectl get services -n ingress-nginx
 */
-
-//495

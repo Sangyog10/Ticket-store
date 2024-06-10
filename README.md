@@ -1,6 +1,6 @@
-# Ticketing App
+# Ticket-store
 
-Ticketing App is built on a microservice architecture leveraging various tools such as Docker, Kubernetes, Skaffold, Node.js, Redis,NATS streaming server.
+Ticket-store is built on a microservice architecture leveraging various tools such as Docker, Kubernetes, Skaffold, Node.js, Redis,NATS streaming server.
 
 ## Requirements
 
@@ -38,7 +38,7 @@ Enable Ingress for routing external traffic to Kubernetes services:
 minikube addons enable ingress
 ```
 
-### 4. Run the Project
+### 4. Run the Project Locally
 
 To start the project, execute the following command:
 
@@ -74,4 +74,4 @@ npm run test
 
 ## Conclusion
 
-By following these steps, you'll have the Ticketing App up and running locally, ready for development, testing, and further enhancements.
+By following these steps, you'll have the App up and running locally, ready for development, testing, and further enhancements.
